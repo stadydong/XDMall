@@ -5,12 +5,28 @@ Vue.use(VueRouter)
 
 const routes = [
 	{
-		
+		path: '/',
+		component: () => import('@/components/common/Main.vue'),
+		children: [
+			{
+				path: '',
+				component: () => import('@/views/Home.vue')
+			},
+			{
+				path: 'goods',
+				component: () => import('@/views/Goods.vue')
+			}
+		]
+	},
+	{
+		path: '/login',
+		component: () => import('@/views/Login.vue')
 	}
 ]
 
 const router = new VueRouter({
-	routes
+	routes,
+	mode: 'hash'
 })
 
 export default router

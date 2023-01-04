@@ -1,7 +1,8 @@
 const { defineConfig } = require('@vue/cli-service')
+
 module.exports = defineConfig({
 	transpileDependencies: true,
-	lintOnSave: true, //关闭eslint出现的停止编译
+	lintOnSave: false, //关闭eslint出现的停止编译
 	devServer: {
 		proxy: {
 			'/api': {
@@ -10,5 +11,11 @@ module.exports = defineConfig({
 				changeOrigin: true
 			}
 		}
+	},
+	chainWebpack:config=>{
+		config.module
+		.rule("less")
+		.use("less-loader")
+		.tap(options => options)
 	}
 })

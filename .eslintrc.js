@@ -11,5 +11,8 @@ module.exports = {
 	parserOptions: {
 		parser: '@babel/eslint-parser'
 	},
-	rules: {}
+	rules: {
+		//关闭检查组件名称大写
+		'vue/multi-word-component-names': 'off'
+	}
 }
