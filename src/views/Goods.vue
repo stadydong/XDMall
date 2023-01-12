@@ -60,13 +60,6 @@ import { getProductList } from '@/service/goods/goods'
 export default {
 	data() {
 		return {
-			panel: {
-				title: '小米10',
-				desc: '这是一段商品的描述',
-				productImageUrl: 'http://localhost:3000/swiper/swiper1.webp',
-				productDetailId: 0,
-				price: '1.00'
-			},
 			productData: {},
 			currentPage: 1,
 			pageSize: 10,
@@ -122,7 +115,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .order-item {
 	@apply pl-8 text-xs text-zinc-400;
 }

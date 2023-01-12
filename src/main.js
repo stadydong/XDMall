@@ -11,9 +11,12 @@ import { registerCPT } from '@/public/common/commonCPT'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
+import 'swiper/css/grid'
+import 'swiper/css/navigation'
 
 //注册全局组件
 registerCPT()
+
 
 new Vue({
 	router,

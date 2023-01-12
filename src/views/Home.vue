@@ -32,14 +32,13 @@
 				<h2 class="text-2xl pl-4 py-4 bg-zinc-150">{{ item.title }}</h2>
 				<div class="content flex flex-wrap">
 					<div
-						class="hot-item w-1/2 py-14 bg-white shadow-"
+						class="hot-item w-1/2 py-14 bg-white border"
 						v-for="(panel, pindex) in item.panel"
 						:key="panel.id"
 						@mouseenter="currentShop(index, pindex)"
 						@mouseleave="outShop(index, pindex)"
 						:class="{ floatbox: panel.status === 0 }"
 					>
-						<!-- {{ panel }} -->
 						<div class="shop-img flex justify-center">
 							<img :src="panel.productImageUrl" :alt="panel.title" class="w-full h-52 px-14" />
 						</div>
@@ -50,7 +49,7 @@
 								￥{{ panel.price }}
 							</div>
 							<div class="change" v-show="!panel.status">
-								<button class="bg-zinc-100 border text-sm px-4 py-1 rounded-md">查看详细</button
+								<button class="bg-zinc-100 border text-sm px-4 py-1 rounded-md" @click="toProductDetail(panel.productDetailId)">查看详细</button
 								><button class="ml-3 text-white bg-blue-500 border text-sm px-4 py-1 rounded-md">加入购物车</button>
 							</div>
 						</div>
@@ -72,7 +71,7 @@
 						@mouseenter="currentShop(index, pindex)"
 						@mouseleave="outShop(index, pindex)"
 					>
-						<div v-if="pindex === 0" class="">
+						<a href.sync="" @click="toProductDetail(panel.productDetailId)" v-if="pindex === 0">
 							<div class="img-box">
 								<img
 									:src="panel.productImageUrl"
@@ -81,7 +80,7 @@
 									style="height: calc(27rem + 2px)"
 								/>
 							</div>
-						</div>
+						</a>
 						<div v-else>
 							<div class="img-box">
 								<img :src="panel.productImageUrl" :alt="panel.title" class="w-full h-80" />
@@ -93,7 +92,7 @@
 									￥{{ panel.price }}
 								</div>
 								<div class="change pb-4" v-show="!panel.status">
-									<button class="bg-zinc-100 border text-sm px-4 py-1 rounded-md">查看详细</button
+									<button class="bg-zinc-100 border text-sm px-4 py-1 rounded-md"  @click="toProductDetail(panel.productDetailId)">查看详细</button
 									><button class="ml-3 text-white bg-blue-500 border text-sm px-4 py-1 rounded-md">加入购物车</button>
 								</div>
 							</div>
@@ -127,6 +126,15 @@ export default {
 		outShop(index, pindex) {
 			this.$store.state.HomeStore.goodsList[index].panel[pindex].status = 1
 			console.log('离开了', index, pindex)
+		},
+		// 点击查看详细按钮
+		toProductDetail(productDetailId){
+			this.$router.push({
+				path:"/goodsDetail",
+				query:{
+					productDetailId
+				}
+			})
 		}
 	},
 	computed: {
@@ -156,14 +164,12 @@ export default {
 					}
 				})
 			})
-
-			console.log(nv, ov)
 		}
 	}
 }
 </script>
 
-<style>
+<style scoped>
 .hot-item {
 	transition: all 0.5s ease;
 }

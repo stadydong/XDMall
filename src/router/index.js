@@ -15,6 +15,10 @@ const routes = [
 			{
 				path: 'goods',
 				component: () => import('@/views/Goods.vue')
+			},
+			{
+				path:"goodsDetail",
+				component:()=>import("@/views/GoodsDetail.vue")
 			}
 		]
 	},
@@ -26,7 +30,27 @@ const routes = [
 
 const router = new VueRouter({
 	routes,
-	mode: 'hash'
+	mode: 'hash',
+	scrollBehavior(to,from,savedPosition){
+		return { y: 0 }
+	}
 })
+const writeList = ["/login"]
+router.beforeEach((to,from,next)=>{
+	const token = localStorage.getItem("token")
+	if(token){
+		next()
+	}else{
+	/**
+	 * 表示是白名单的路径进行放行 
+	 * */
+		if(writeList.includes(to.path)){
+			// console.log(true);
+			next()
+		}else{
+			next("/login")
+		}
+	}
 
+})
 export default router

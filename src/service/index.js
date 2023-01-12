@@ -14,10 +14,11 @@ instance.interceptors.request.use(
 )
 instance.interceptors.response.use(
 	res => {
+
 		return res.data
 	},
 	err => {
-		return err
+		return err.response.data
 	}
 )
 export default instance

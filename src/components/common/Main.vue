@@ -11,16 +11,54 @@
 					<input
 						type="text"
 						name="keyword"
-						id=""
-						class="h-8 text-xs text-black rounded w-60"
+						class="h-8 text-sm text-black rounded w-60 pl-4
+						placeholder-gray-400
+						outline-none
+						focus:ring-4
+					focus:ring-white
+						focus:ring-opacity-20
+						"
 						placeholder="请输入商品信息"
 						v-model="keyword"
 					/>
-					<span class="iconfont icon-wode absolute text-red-400 right-0 text-xl h-8 flex items-center top-0"></span>
+					<a href="">
+						<span class="iconfont icon-wode absolute text-red-400 right-1 text-xl h-8 flex items-center top-0"></span>
+					</a>
 				</div>
-				<div class="h-8 px-8">全部商品</div>
-				<div class="h-8 px-8">|</div>
-				<div class="h-8 iconfont icon-wode text-2xl px-8"></div>
+				<router-link to="/goods" class="text-white"><div class="h-8 px-8 leading-8">全部商品</div></router-link>
+				<div class="h-8 px-8 leading-8">|</div>
+				<!-- 用户图标 -->
+				<a-popover placement="bottom">
+        <template slot="content" class="aasa">
+					<div class=" text-center pt-6">
+						<div class="userImg  w-16 h-16 rounded-full mx-auto overflow-hidden border relative">
+							<img class="w-16 h-16 absolute left-0 top-0" :src="userInfo.imgUrl">
+						</div>
+						
+
+						<div class="px-16 w-44 text-center  border-b pt-1 pb-2">{{ userNameV }}</div>
+						<a href="" class="text-black">
+							<div class="px-10 py-2 border-b hover:bg-zinc-200">
+								我的订单
+							</div>
+						</a>
+						<a href="" class=" text-black " ><div class="px-10 py-2 border-b hover:bg-zinc-200">账号资料</div></a>
+						<a href="" class=" text-black"><div class="px-10 py-2 border-b hover:bg-zinc-200">收货地址</div></a>
+						<a href="" class=" text-black"><div class="px-10 py-2 border-b hover:bg-zinc-200">售后服务</div></a>
+						<a href="" class=" text-black"><div class="px-10 py-2 border-b hover:bg-zinc-200">我的优惠</div></a>
+						<a href.sync="" class=" text-black" @click="logout"><div class="px-10 py-2  text-center hover:bg-zinc-200">退出</div></a>
+					</div>
+
+        </template>
+        <!-- <template slot="title">
+          <span>Title</span>
+        </template> -->
+					<a class="h-8 iconfont icon-wode text-xl px-8 text-white flex items-center"></a>
+      </a-popover>
+
+        
+
+				
 				<div class="h-8 iconfont icon-gouwucheman text-2xl px-8"></div>
 			</div>
 		</header>
@@ -77,26 +115,47 @@
 
 <script>
 import { mapState } from 'vuex'
-
+import { getUserInfo } from '@/service/common/common'
+import { ErrorMessageAlert } from '@/public/common/utilsfun'
 export default {
 	data() {
 		return {
-			keyword: ''
+			keyword: '',
+			userInfo:{}
 		}
 	},
 	methods: {
 		toUrl(toUrl) {
 			console.log(toUrl)
+		},
+		logout(){
+			localStorage.removeItem("token")
+			this.$router.push({
+				path:"/login"
+			})
 		}
 	},
 	computed: {
 		...mapState({
 			navList: state => state.HomeStore.navList,
 			currentIndex: state => state.HomeStore.currentIndex
-		})
+		}),
+		userNameV(){
+			return JSON.parse(localStorage.getItem("username"))
+		}
 	},
 	created() {
 		this.$store.dispatch('GetNavList')
+		const uid = localStorage.getItem("uid")
+		console.log(uid);
+		getUserInfo(uid).then(res=>{
+			if(res.success){
+				this.userInfo = res.data
+				return 
+			}
+			ErrorMessageAlert(res,this)
+			console.log(res);
+		})
 	}
 }
 </script>
@@ -112,4 +171,10 @@ export default {
 .siteinfo-text {
 	@apply text-xs text-stone-400 mb-1;
 }
+/**
+修改弹出框的样式 */
+.ant-popover-inner-content{
+	padding: 0;
+}
 </style>
+
