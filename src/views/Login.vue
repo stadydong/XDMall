@@ -61,12 +61,13 @@ export default {
 				/**
 				 * 表示登录成功
 				 */
-				if(result.success === true){
+				if(result.success){
 					localStorage.setItem('token', JSON.stringify(result.data.token))
 					localStorage.setItem('username', JSON.stringify(result.data.username))
 					localStorage.setItem('uid', JSON.stringify(result.data.id))
 					localStorage.setItem('password', JSON.stringify(this.userInfo.password))
 					this.$message.success("登录成功，正在跳转首页")
+					
 					this.$router.push({
 						path:"/"
 					})

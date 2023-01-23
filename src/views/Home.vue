@@ -18,10 +18,10 @@
 				<h2 class="text-2xl pl-4 py-4 bg-zinc-150">{{ item.title }}</h2>
 				<div class="content flex space-x-2.5">
 					<div v-for="panel in item.panel" :key="panel.id" class="relative">
-						<a href="#">
-							<img :src="panel.productImageUrl" :alt="panel.title" class="h-52 w-full" />
+						<img :src="panel.productImageUrl" :alt="panel.title" class="h-52 w-full" />
+						<a href.sync="" @click="toProductDetail(panel.productId.productDetail.id)">
+							<div class="absolute w-full h-full top-0 z-20 hover:shadow-myinner1"></div>
 						</a>
-						<div class="absolute w-full h-full top-0 z-50 hover:shadow-myinner1"></div>
 						<!-- shadow-myinner1 我的内阴影 -->
 					</div>
 				</div>
@@ -49,8 +49,8 @@
 								￥{{ panel.price }}
 							</div>
 							<div class="change" v-show="!panel.status">
-								<button class="bg-zinc-100 border text-sm px-4 py-1 rounded-md" @click="toProductDetail(panel.productDetailId)">查看详细</button
-								><button class="ml-3 text-white bg-blue-500 border text-sm px-4 py-1 rounded-md">加入购物车</button>
+								<button class="bg-zinc-100 border text-sm px-4 py-1 rounded-md" @click="toProductDetail(panel.productId.productDetail.id)">查看详细</button
+								><button class="ml-3 text-white bg-blue-500 border text-sm px-4 py-1 rounded-md" @click="addCar(panel.productId)">加入购物车</button>
 							</div>
 						</div>
 					</div>
@@ -92,8 +92,8 @@
 									￥{{ panel.price }}
 								</div>
 								<div class="change pb-4" v-show="!panel.status">
-									<button class="bg-zinc-100 border text-sm px-4 py-1 rounded-md"  @click="toProductDetail(panel.productDetailId)">查看详细</button
-									><button class="ml-3 text-white bg-blue-500 border text-sm px-4 py-1 rounded-md">加入购物车</button>
+									<button class="bg-zinc-100 border text-sm px-4 py-1 rounded-md"  @click="toProductDetail(panel.productId.productDetail.id)">查看详细</button
+									><button class="ml-3 text-white bg-blue-500 border text-sm px-4 py-1 rounded-md" @click="addCar(panel.productId)">加入购物车</button>
 								</div>
 							</div>
 						</div>
@@ -117,24 +117,32 @@ export default {
 	methods: {
 		currentShop(index, pindex) {
 			// panel.status = 1
-			console.log(index, pindex)
-			console.log(this.$store.state.HomeStore)
+			// console.log(index, pindex)
+			// console.log(this.$store.state.HomeStore)
 			//1表示显示价格 0表示隐藏
 			//可以封装为一个同步函数
 			this.$store.state.HomeStore.goodsList[index].panel[pindex].status = 0
 		},
 		outShop(index, pindex) {
 			this.$store.state.HomeStore.goodsList[index].panel[pindex].status = 1
-			console.log('离开了', index, pindex)
+			// console.log('离开了', index, pindex)
 		},
 		// 点击查看详细按钮
 		toProductDetail(productDetailId){
+
+			console.log(productDetailId);
 			this.$router.push({
 				path:"/goodsDetail",
 				query:{
 					productDetailId
 				}
 			})
+		},
+		addCar(productId){
+			this.$store.dispatch("AddCar",{
+				productId,
+			})
+			console.log(productId);
 		}
 	},
 	computed: {
@@ -146,7 +154,11 @@ export default {
    * 发送网络请求
    */
 	created() {
+		/**获取商品列表 */
 		this.$store.dispatch('GetGoodsList')
+		/**获取购物车列表 */
+		this.$store.dispatch("GetCarList")
+
 	},
 	watch: {
 		//利用计算属性+监听vuex的数据

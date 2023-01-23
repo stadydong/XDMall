@@ -14,7 +14,10 @@ module.exports = {
 			},
 			width:{
 				"20-scroll":'calc(5rem + 18px)',
-				"100":"25rem"
+				"96-scroll":'calc(24rem + 17px)',
+				"92":"23rem",
+				"100":"25rem",
+				"104":"26rem",
 			},
 			boxShadow:{
 				'myinner1': 'inset 0 0 1em rgba(0,0,0,0.2)',
@@ -22,6 +25,10 @@ module.exports = {
 			},
 			borderRadius:{
 				'10':'2.5rem'
+			},
+			maxHeight:{
+				'84':'21rem'
+
 			}
 		}
 	},

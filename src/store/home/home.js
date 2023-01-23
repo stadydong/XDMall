@@ -1,10 +1,9 @@
 import { getGoodsList, getNavList } from '@/service/home/home'
-
 export const HomeStore = {
 	state: {
 		navList: [],
 		currentIndex: 0,
-		goodsList: []
+		goodsList: [],
 	},
 	getters: {},
 	mutations: {
@@ -13,7 +12,8 @@ export const HomeStore = {
 		},
 		GETGOODSLIST(state, goodsList) {
 			state.goodsList = goodsList
-		}
+		},
+
 	},
 	actions: {
 		async GetNavList({ commit }) {

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { HomeStore } from './home/home'
+import { MainStore } from './main/main'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -9,6 +10,7 @@ export default new Vuex.Store({
 	mutations: {},
 	actions: {},
 	modules: {
-		HomeStore
+		HomeStore,
+		MainStore
 	}
 })

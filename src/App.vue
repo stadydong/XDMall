@@ -7,6 +7,9 @@
 export default {
 	data() {
 		return {}
+	},
+	created(){
+		this.$store.dispatch("GetCarList")
 	}
 }
 </script>

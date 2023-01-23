@@ -33,6 +33,7 @@
 		</div>
 		<div class="product-list flex flex-wrap">
 			<Cart
+				@addCar="addCar"
 				:panel="product"
 				:pindex="0"
 				v-for="(product, index) in productData?.productList"
@@ -105,6 +106,12 @@ export default {
 			let pageSize = this.pageSize
 			const { startPrice, endPrice } = this.PriceValue
 			this.getProductData(--page, pageSize, type, startPrice, endPrice)
+		},
+		/**加入购物车 */
+		addCar(product){
+			this.$store.dispatch("AddCar",{
+				product,
+			})
 		}
 	},
 	created() {

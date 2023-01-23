@@ -7,14 +7,14 @@
 		</div>
 		<div class="shop-desc flex flex-col items-center">
 			<div class="h-7 my-1 w-full overflow-hidden">
-				<div class="title text-lg truncate">{{ panel.title }}</div>
+				<div class="title text-lg truncate  text-center">{{ panel.title }}</div>
 			</div>
 
 			<div class="desc text-xs text-zinc-400 mb-4">{{ panel.desc }}</div>
 			<div class="price text-red-600 text-xl pb-4 group-hover:hidden">￥{{ panel.price }}</div>
 			<div class="change pb-4 hidden group-hover:block">
 				<button class="bg-zinc-100 text-sm px-4 py-1 rounded-md" @click="toProductDetail(panel.productDetailId)">查看详细</button
-				><button class="ml-3 text-white bg-blue-500 text-sm px-4 py-1 rounded-md" @click="addCart">加入购物车</button>
+				><button class="ml-3 text-white bg-blue-500 text-sm px-4 py-1 rounded-md" @click="addCart(panel)">加入购物车</button>
 			</div>
 		</div>
 	</div>
@@ -36,8 +36,9 @@ export default {
 		toPenelInfo() {
 			console.log('查看详细')
 		},
-		addCart() {
-			console.log('加入购物车')
+		addCart(panel) {
+			console.log(panel);
+			this.$emit("addCar",panel)
 		},
 		toProductDetail(productDetailId){
 			this.$router.push({
