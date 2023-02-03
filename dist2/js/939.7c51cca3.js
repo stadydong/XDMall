@@ -1,0 +1,1 @@
+"use strict";(self["webpackChunkvue2_view"]=self["webpackChunkvue2_view"]||[]).push([[939],{939:function(e,u,n){n.r(u),n.d(u,{default:function(){return l}});var s=function(){var e=this,u=e._self._c;return u("div",[e._v("AddressList.vue")])},t=[],r={},i=r,v=n(1001),c=(0,v.Z)(i,s,t,!1,null,"862e7c22",null),l=c.exports}}]);

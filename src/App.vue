@@ -9,7 +9,7 @@ export default {
 		return {}
 	},
 	created(){
-		this.$store.dispatch("GetCarList")
+		// this.$store.dispatch("GetCarList")
 	}
 }
 </script>

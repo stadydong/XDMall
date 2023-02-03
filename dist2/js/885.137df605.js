@@ -1,0 +1,1 @@
+"use strict";(self["webpackChunkvue2_view"]=self["webpackChunkvue2_view"]||[]).push([[885],{7885:function(u,e,n){n.r(e),n.d(e,{default:function(){return s}});var t=function(){var u=this,e=u._self._c;return e("div",[u._v("Coupon.vue")])},r=[],v={},f=v,i=n(1001),l=(0,i.Z)(f,t,r,!1,null,"79517f46",null),s=l.exports}}]);

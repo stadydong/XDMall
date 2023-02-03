@@ -1,5 +1,5 @@
 <template>
-	<div class="h-full w-full bg-slate-300 pt-20">
+	<div class="h-full w-full  pt-20 bg-zinc-50">
 		<header class="px-40 w-full h-20 flex justify-between bg-black text-white fixed top-0 z-50">
 			<div class="h-left flex justify-center h-full items-center">
 				<a href="/">
@@ -21,8 +21,8 @@
 						placeholder="请输入商品信息"
 						v-model="keyword"
 					/>
-					<a href="">
-						<span class="iconfont icon-wode absolute text-red-400 right-1 text-xl h-8 flex items-center top-0"></span>
+					<a href.sync="">
+						<span class="iconfont icon-sousuo absolute text-gray-400 right-1 text-xl h-8 flex items-center top-0"></span>
 					</a>
 				</div>
 				<router-link to="/goods" class="text-white"><div class="h-8 px-8 leading-8">全部商品</div></router-link>
@@ -84,8 +84,8 @@
 			</div>
 		</nav>
 		<router-view />
-		<footer class="px-40 pb-10">
-			<div class="footer-content flex pt-16 pb-6">
+		<footer class="px-40 pb-10 ">
+			<div class="footer-content flex pt-16 pb-6 ">
 				<div class="left flex justify-between w-2/3">
 					<div class="flex flex-col w-1/5">
 						<div class="siteinfo-title">选购指南</div>

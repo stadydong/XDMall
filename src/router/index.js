@@ -36,6 +36,13 @@ const routes = [
 					showNav:false
 				}
 			},
+			{
+				path:"about",
+				component:()=>import("@/views/About.vue"),
+				meta:{
+					showNav:true
+				}
+			},
 			/**用户相关的路径 */
 			{
 				path:"user",

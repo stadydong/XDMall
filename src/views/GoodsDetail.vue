@@ -26,24 +26,24 @@
 					</div>
 				</div>
 			</div>
-			<div class="product-desc bg-zinc-100">
-				<div class="text-2xl  pl-4 mt-8">
+			<div class="product-desc bg-zinc-100 flex-1">
+				<div class="text-2xl  pl-10 mt-8">
 					{{ productInfo.title }}
 				</div>
-				<div class="text  pl-4 text-zinc-400 mt-2 border-b pb-6">
+				<div class="text  pl-10 text-zinc-400 mt-2 border-b pb-6">
 					{{ productInfo.desc }}
 				</div>
-				<div class=" pl-4  py-4 text-3xl text-red-500 font-bold border-b">
+				<div class=" pl-10  py-4 text-3xl text-red-500 font-bold border-b">
 					<span class=" text-xl ">￥</span>
 					{{ productInfo.salePrice }}
 				</div>
-				<div class="pl-4 text-2xl flex border-b py-4">
+				<div class="pl-10 text-2xl flex border-b py-4">
 					<span class="mr-8">数量</span>
 					<button @click="changeProductNum(-1)" class="w-10 h-10 rounded-3xl flex items-center justify-center bg-white ">-</button>
 					<input type="text" class="mx-4 w-20 text-center bg-none" v-model="ProductNum">
 					<button @click="changeProductNum(1)" class="w-10 h-10  rounded-3xl flex items-center justify-center bg-white ">+</button>
 				</div>
-				<div class=" pl-4 mt-8">
+				<div class=" pl-10 mt-8">
 					<!-- bg-blue-500 -->
 					<button class="text-white  text-xl px-10 py-4 bg-gradient-to-t from-blue-500 via-blue-600 to-blue-500  rounded-md">加入购物车</button>
 					<button class="ml-6 bg-zinc-200 text-xl px-10 py-4 bg-gradient-to-t from-zinc-200 via-zinc-300 to-zinc-200 rounded-md">现在购买</button>
@@ -52,7 +52,7 @@
 		</div>
 		<div class="datu px-40 bg-zinc-50 mt-10 pb-10">
 			<h2 class="text-2xl m-0 pl-4 py-4 bg-zinc-150">产品详细介绍图</h2>
-			<img :src="productInfo.detailInfoImg" :alt="productInfo.title">
+			<img :src="productInfo.detailInfoImg" :alt="productInfo.title" class=" w-full">
 		</div>
 	</div>
 </template>

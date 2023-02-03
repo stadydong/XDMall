@@ -1,0 +1,1 @@
+"use strict";(self["webpackChunkvue2_view"]=self["webpackChunkvue2_view"]||[]).push([[284],{6284:function(e,u,n){n.r(u),n.d(u,{default:function(){return s}});var t=function(){var e=this,u=e._self._c;return u("div",[e._v("Support.vue")])},r=[],v={},c=v,i=n(1001),l=(0,i.Z)(c,t,r,!1,null,"93c6e62e",null),s=l.exports}}]);

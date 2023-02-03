@@ -1,0 +1,1 @@
+"use strict";(self["webpackChunkvue2_view"]=self["webpackChunkvue2_view"]||[]).push([[956],{6956:function(u,e,n){n.r(e),n.d(e,{default:function(){return l}});var i=function(){var u=this,e=u._self._c;return e("div",[u._v("Aihuishou.vue")])},t=[],r={},s=r,v=n(1001),f=(0,v.Z)(s,i,t,!1,null,"f0262616",null),l=f.exports}}]);

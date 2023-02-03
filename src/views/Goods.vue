@@ -34,6 +34,7 @@
 		<div class="product-list flex flex-wrap">
 			<Cart
 				@addCar="addCar"
+				@lookProductDetail="lookProductDetail"
 				:panel="product"
 				:pindex="0"
 				v-for="(product, index) in productData?.productList"
@@ -111,6 +112,15 @@ export default {
 		addCar(product){
 			this.$store.dispatch("AddCar",{
 				product,
+			})
+		},
+		/**点击查看详细事件 */
+		lookProductDetail(product){
+			this.$router.push({
+				path:"/goodsDetail",
+				query:{
+					productDetailId:product.productDetail.id
+				}
 			})
 		}
 	},

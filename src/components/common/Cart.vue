@@ -13,7 +13,7 @@
 			<div class="desc text-xs text-zinc-400 mb-4">{{ panel.desc }}</div>
 			<div class="price text-red-600 text-xl pb-4 group-hover:hidden">￥{{ panel.price }}</div>
 			<div class="change pb-4 hidden group-hover:block">
-				<button class="bg-zinc-100 text-sm px-4 py-1 rounded-md" @click="toProductDetail(panel.productDetailId)">查看详细</button
+				<button class="bg-zinc-100 text-sm px-4 py-1 rounded-md" @click="lookProductDetail(panel)">查看详细</button
 				><button class="ml-3 text-white bg-blue-500 text-sm px-4 py-1 rounded-md" @click="addCart(panel)">加入购物车</button>
 			</div>
 		</div>
@@ -40,13 +40,8 @@ export default {
 			console.log(panel);
 			this.$emit("addCar",panel)
 		},
-		toProductDetail(productDetailId){
-			this.$router.push({
-				path:"/goodsDetail",
-				query:{
-					productDetailId
-				}
-			})
+		lookProductDetail(product){
+			this.$emit("lookProductDetail",product)
 		}
 	}
 }

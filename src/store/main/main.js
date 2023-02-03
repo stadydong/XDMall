@@ -11,7 +11,6 @@ export const MainStore = {
 			state.userInfo = userInfo
 		},
 		GETCARLIST(state, carShoppingInfo) {
-      console.log(carShoppingInfo);
       state.carList = carShoppingInfo
     },
     // ADDCAR(state,carInfo){
@@ -34,7 +33,7 @@ export const MainStore = {
 		},
 		async GetCarList({commit}) {
       const userInfo = JSON.parse(localStorage.getItem("userInfo"))
-			const result = await getCarList(userInfo.car.id)
+			const result = await getCarList(userInfo?.car.id)
       // commit()
       if(result.success){
         commit("GETCARLIST",result.data.carshoppinginfo)
@@ -77,6 +76,13 @@ export const MainStore = {
       return state.carList.reduce((previousValue, currentValue)=>{
         return previousValue + currentValue.num
       },0)
+    },
+    checkProduct(state){
+      let selectProduct = []
+      state.carList.map(item=>{
+        if(item.checked) selectProduct.push(item.id)
+      })
+      return selectProduct
     }
   }
 }

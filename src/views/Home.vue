@@ -17,7 +17,7 @@
 			<div v-if="item.type === 2" class="activity mt-8 rounded-md overflow-hidden">
 				<h2 class="text-2xl pl-4 py-4 bg-zinc-150">{{ item.title }}</h2>
 				<div class="content flex space-x-2.5">
-					<div v-for="panel in item.panel" :key="panel.id" class="relative">
+					<div v-for="panel in item.panel" :key="panel.id" class="relative w-1/4">
 						<img :src="panel.productImageUrl" :alt="panel.title" class="h-52 w-full" />
 						<a href.sync="" @click="toProductDetail(panel.productId.productDetail.id)">
 							<div class="absolute w-full h-full top-0 z-20 hover:shadow-myinner1"></div>
@@ -40,7 +40,7 @@
 						:class="{ floatbox: panel.status === 0 }"
 					>
 						<div class="shop-img flex justify-center">
-							<img :src="panel.productImageUrl" :alt="panel.title" class="w-full h-52 px-14" />
+							<img :src="panel.productImageUrl" :alt="panel.title" class="w-full px-14" />
 						</div>
 						<div class="shop-desc flex flex-col items-center">
 							<div class="title text-lg py-1">{{ panel.title }}</div>
@@ -83,7 +83,7 @@
 						</a>
 						<div v-else>
 							<div class="img-box">
-								<img :src="panel.productImageUrl" :alt="panel.title" class="w-full h-80" />
+								<img :src="panel.productImageUrl" :alt="panel.title" class=" h-80" />
 							</div>
 							<div class="shop-desc flex flex-col items-center">
 								<div class="title text-lg py-1">{{ panel.title }}</div>
@@ -140,8 +140,9 @@ export default {
 		},
 		addCar(productId){
 			this.$store.dispatch("AddCar",{
-				productId,
+				productId:productId.id,
 			})
+			
 			console.log(productId);
 		}
 	},
