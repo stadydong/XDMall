@@ -110,6 +110,7 @@ export default {
 		},
 		/**加入购物车 */
 		addCar(product){
+			console.log("goods",product);
 			this.$store.dispatch("AddCar",{
 				product,
 			})
@@ -119,7 +120,7 @@ export default {
 			this.$router.push({
 				path:"/goodsDetail",
 				query:{
-					productDetailId:product.productDetail.id
+					productId:product.id
 				}
 			})
 		}

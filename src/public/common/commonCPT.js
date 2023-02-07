@@ -7,7 +7,6 @@ export function registerCPT() {
 	// 注册我自己封装的全局组件
 	Vue.component(Cart.name, Cart)
 	Vue.component(ProductCart.name, ProductCart)
-	Vue.component(Button.name, Button)
 
 	//注册ant-design的组件
 	registerAntCPT()
@@ -21,4 +20,5 @@ export function registerAntCPT() {
 	Vue.component(Modal.name,Modal)
 	/**必须注册不然报错 */
 	Vue.use(Modal)
+	Vue.use(Button)
 }

@@ -42,9 +42,8 @@ export const MainStore = {
     async AddCar({commit,state},carInfo){
       // {carId,num,productId}
       let carId = JSON.parse(localStorage.getItem("userInfo")).car.id
-      let currentCarProduct = state.carList.find((item)=>item.productId===carInfo.id)
+      let currentCarProduct = state.carList.find((item)=>item.product.id===carInfo.product.id)
       if(currentCarProduct){
-        console.log(currentCarProduct);
         console.log("商品在购物车已经存在,进行数量加1");
         let num = currentCarProduct.num + 1
         console.log(num);
@@ -56,7 +55,7 @@ export const MainStore = {
       }else{
         carInfo.num = 1
         carInfo.carId = carId
-        // carInfo.
+        carInfo.productId = carInfo.product.id
         const result = await addCar(carInfo)
         if(result.success) this.dispatch("GetCarList")
       }

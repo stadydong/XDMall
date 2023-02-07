@@ -1,7 +1,7 @@
 <template>
 	<div class="product-content flex w-full overflow-hidden h-20">
 		<slot name="left">
-			<div class="left mr-6 w-20 h-20 bg-blue-300 shrink-0">
+			<div class="left mr-6 w-20 h-20  shrink-0">
 				<img :src="imgUrl" class="w-20 h-20" :alt="title" />
 			</div>
 		</slot>

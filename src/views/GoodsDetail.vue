@@ -2,16 +2,16 @@
 	<div class="product-detail bg-zinc-50">
 		<div class="header px-40 py-4 bg-zinc-50 flex">
 			<div class=" flex-shrink-0 bg-white w-96">
-				<img :src="activeImgUrl" :alt="productInfo.title" class="w-96 h-96" />
+				<img :src="activeImgUrl" :alt="productInfo.productDetail.title" class="w-96 h-96" />
 				<div class="swiper-box relative px-14 group">
 					<div class="left-btn hidden group-hover:block">
 						<div class="swiper-button-prev" ref="s_prev"></div>
 					</div>
-					<div class="swiper h-20-scroll py-4 w-full" ref="swiper">
+					<div class="swiper h-20-scroll w-full" ref="swiper">
 						<div class="swiper-wrapper">
 							<div
 								class="swiper-slide flex justify-center items-center"
-								v-for="(detaiImg, index) in productInfo.detailImg"
+								v-for="(detaiImg, index) in productInfo.productDetail.detailImg"
 								:key="detaiImg"
 								:class="{ activeImg: index === activeIndex }"
 								@click="changeActiveImg(index)"
@@ -28,14 +28,14 @@
 			</div>
 			<div class="product-desc bg-zinc-100 flex-1">
 				<div class="text-2xl  pl-10 mt-8">
-					{{ productInfo.title }}
+					{{ productInfo.productDetail.title }}
 				</div>
 				<div class="text  pl-10 text-zinc-400 mt-2 border-b pb-6">
-					{{ productInfo.desc }}
+					{{ productInfo.productDetail.desc }}
 				</div>
 				<div class=" pl-10  py-4 text-3xl text-red-500 font-bold border-b">
 					<span class=" text-xl ">￥</span>
-					{{ productInfo.salePrice }}
+					{{ productInfo.productDetail.salePrice }}
 				</div>
 				<div class="pl-10 text-2xl flex border-b py-4">
 					<span class="mr-8">数量</span>
@@ -45,14 +45,14 @@
 				</div>
 				<div class=" pl-10 mt-8">
 					<!-- bg-blue-500 -->
-					<button class="text-white  text-xl px-10 py-4 bg-gradient-to-t from-blue-500 via-blue-600 to-blue-500  rounded-md">加入购物车</button>
-					<button class="ml-6 bg-zinc-200 text-xl px-10 py-4 bg-gradient-to-t from-zinc-200 via-zinc-300 to-zinc-200 rounded-md">现在购买</button>
+					<button class="text-white  text-xl px-10 py-4 bg-gradient-to-t from-blue-500 via-blue-600 to-blue-500  rounded-md" @click="addCar">加入购物车</button>
+					<button class="ml-6 bg-zinc-200 text-xl px-10 py-4 bg-gradient-to-t from-zinc-200 via-zinc-300 to-zinc-200 rounded-md" @click=" $router.push('/cart')">前往付款</button>
 				</div>
 			</div>
 		</div>
 		<div class="datu px-40 bg-zinc-50 mt-10 pb-10">
 			<h2 class="text-2xl m-0 pl-4 py-4 bg-zinc-150">产品详细介绍图</h2>
-			<img :src="productInfo.detailInfoImg" :alt="productInfo.title" class=" w-full">
+			<img :src="productInfo.productDetail.detailInfoImg" :alt="productInfo.productDetail.title" class=" w-full">
 		</div>
 	</div>
 </template>
@@ -63,23 +63,23 @@ import { getProductDetail } from '@/service/productDet/productDet'
 export default {
 	data() {
 		return {
-			productInfo: {},
+			productInfo: {productDetail:{}},
 			activeIndex: 0,
 			ProductNum:1
 		}
 	},
 	computed: {
 		activeImgUrl() {
-			let url = this.productInfo.detailImg ? this.productInfo.detailImg[this.activeIndex] : ''
+			let url = this.productInfo.productDetail.detailImg ? this.productInfo.productDetail.detailImg[this.activeIndex] : ''
 			return url
 		}
 	},
 	async created() {
 		//获取页面的id
-		let id = this.$route.query.productDetailId
+		let id = this.$route.query.productId
 		try {
 			const result = await getProductDetail(id)
-			result.data.detailImg = result.data.detailImg.split(',')
+			result.data.productDetail.detailImg = result.data.productDetail.detailImg.split(',')
 			this.productInfo = result.data
 			console.log(result)
 		} catch (error) {}
@@ -104,11 +104,14 @@ export default {
 				}
 				this.ProductNum = this.ProductNum + num
 			}
+		},
+		addCar(){
+			this.$store.dispatch("AddCar",{product:this.productInfo})
+			console.log(this.productInfo);
 		}
 	},
 	watch: {
 		productInfo() {
-
 			this.$nextTick(() => {
 				//初始化swiper
 				new Swiper(this.$refs.swiper, {

@@ -49,8 +49,8 @@
 								￥{{ panel.price }}
 							</div>
 							<div class="change" v-show="!panel.status">
-								<button class="bg-zinc-100 border text-sm px-4 py-1 rounded-md" @click="toProductDetail(panel.productId.productDetail.id)">查看详细</button
-								><button class="ml-3 text-white bg-blue-500 border text-sm px-4 py-1 rounded-md" @click="addCar(panel.productId)">加入购物车</button>
+								<button class="bg-zinc-100 border text-sm px-4 py-1 rounded-md" @click="toProductDetail(panel)">查看详细</button
+								><button class="ml-3 text-white bg-blue-500 border text-sm px-4 py-1 rounded-md" @click="addCar(panel)">加入购物车</button>
 							</div>
 						</div>
 					</div>
@@ -93,7 +93,7 @@
 								</div>
 								<div class="change pb-4" v-show="!panel.status">
 									<button class="bg-zinc-100 border text-sm px-4 py-1 rounded-md"  @click="toProductDetail(panel.productId.productDetail.id)">查看详细</button
-									><button class="ml-3 text-white bg-blue-500 border text-sm px-4 py-1 rounded-md" @click="addCar(panel.productId)">加入购物车</button>
+									><button class="ml-3 text-white bg-blue-500 border text-sm px-4 py-1 rounded-md" @click="addCar(panel)">加入购物车</button>
 								</div>
 							</div>
 						</div>
@@ -128,22 +128,21 @@ export default {
 			// console.log('离开了', index, pindex)
 		},
 		// 点击查看详细按钮
-		toProductDetail(productDetailId){
-
-			console.log(productDetailId);
+		toProductDetail(panel){
+			console.log(panel);
 			this.$router.push({
 				path:"/goodsDetail",
 				query:{
-					productDetailId
+					productId:panel.productId.id
 				}
 			})
 		},
-		addCar(productId){
+		/**加入购物车事件 */
+		addCar(panel){
 			this.$store.dispatch("AddCar",{
-				productId:productId.id,
+				product:panel.productId,
 			})
 			
-			console.log(productId);
 		}
 	},
 	computed: {

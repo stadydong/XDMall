@@ -142,7 +142,7 @@
 		<div class="fixed bottom-4 right-2 px-4 py-1 border text-blue-500 rounded-lg" @click="openChatWindow(true)">
 			在线聊天
 		</div>
-		<footer class="px-40 pb-10">
+		<footer class="px-40 pb-10 bg-white">
 			<div class="footer-content flex pt-16 pb-6">
 				<div class="left flex justify-between w-2/3">
 					<div class="flex flex-col w-1/5">
@@ -273,7 +273,6 @@ export default {
 		initChatContent(){
 			/**先获取总数 */
 			getChatTotal().then(res=>{
-				console.log("res",res);
 			this.chatContentTotal = res.data.chatTotal - 5
 			/**获取聊天框消息 */
 				this.GetChatContent(this.chatContentTotal)
@@ -319,16 +318,15 @@ export default {
 			return this.$route.meta.showNav
 		},
 		loadChatContent(){
-			console.log(this.chatContentTotal > 0);
 			return this.chatContentTotal > 0
 		}
 	},
 	created() {
 		/**对加载更多按钮注册节流函数 */
 		this.throttleFnObj = throttle(this.throttleClickLoadingFn,1000)
-		console.log(throttle);
 		this.$store.dispatch('GetNavList')
 		this.$store.dispatch('GetUserInfo', this)
+		this.$store.dispatch('GetCarList')
 		/**获取初始5条聊天信息 */
 		this.initChatContent()
 
@@ -336,7 +334,7 @@ export default {
 		// const token = localStorage.getItem("token")
 		const userInfo = localStorage.getItem('userInfo')
 		const uid = JSON.parse(userInfo).id
-		this.socket = io(`ws://localhost:3000?uid=${uid}`, {
+		this.socket = io(`ws://43.139.82.106:3001?uid=${uid}`, {
 			transports: ['websocket']
 		})
 		// socket.emit("sendMessage",{message:"hello I is Client"})

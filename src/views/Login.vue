@@ -4,8 +4,8 @@
 		<div class="content w-100 text-center bg-white py-14 border rounded-md">
 			<div class="h-16 w-16 text-6xl bg-red-700 text-center text-white rounded-full p-1 box-content mx-auto">M</div>
 			<div class="text-lg mt-4 mb-6">使用账号登录XDMall官网</div>
-			<input type="text" v-model="userInfo.username" class="w-5/6 border h-10 pl-2 text-base" placeholder="账号" />
-			<input type="password" v-model="userInfo.password" class="w-5/6 border h-10 mt-4 pl-2 text-base" placeholder="密码" />
+			<input type="text" v-model="userInfo.username" class="w-5/6 border h-10 pl-2 text-base" placeholder="测试账号 test" />
+			<input type="password" v-model="userInfo.password" class="w-5/6 border h-10 mt-4 pl-2 text-base" placeholder="测试密码 test" />
 			<!-- 验证码 -->
 			<div class="code mt-4 w-5/6 mx-auto flex justify-between my-4">
 				<input type="text" v-model="userInfo.code" class="border flex-1 pl-4 mr-10 h-10" />
