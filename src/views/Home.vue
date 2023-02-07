@@ -19,7 +19,7 @@
 				<div class="content flex space-x-2.5">
 					<div v-for="panel in item.panel" :key="panel.id" class="relative w-1/4">
 						<img :src="panel.productImageUrl" :alt="panel.title" class="h-52 w-full" />
-						<a href.sync="" @click="toProductDetail(panel.productId.productDetail.id)">
+						<a href.sync="" @click="toProductDetail(panel)">
 							<div class="absolute w-full h-full top-0 z-20 hover:shadow-myinner1"></div>
 						</a>
 						<!-- shadow-myinner1 我的内阴影 -->
@@ -71,7 +71,7 @@
 						@mouseenter="currentShop(index, pindex)"
 						@mouseleave="outShop(index, pindex)"
 					>
-						<a href.sync="" @click="toProductDetail(panel.productDetailId)" v-if="pindex === 0">
+						<a href.sync="" @click="toProductDetail(panel)" v-if="pindex === 0">
 							<div class="img-box">
 								<img
 									:src="panel.productImageUrl"
@@ -92,7 +92,7 @@
 									￥{{ panel.price }}
 								</div>
 								<div class="change pb-4" v-show="!panel.status">
-									<button class="bg-zinc-100 border text-sm px-4 py-1 rounded-md"  @click="toProductDetail(panel.productId.productDetail.id)">查看详细</button
+									<button class="bg-zinc-100 border text-sm px-4 py-1 rounded-md"  @click="toProductDetail(panel)">查看详细</button
 									><button class="ml-3 text-white bg-blue-500 border text-sm px-4 py-1 rounded-md" @click="addCar(panel)">加入购物车</button>
 								</div>
 							</div>
