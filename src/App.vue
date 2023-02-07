@@ -1,5 +1,5 @@
 <template>
-	<div class="app h-full">
+	<div class="app h-full text-base">
 		<router-view></router-view>
 	</div>
 </template>
@@ -9,7 +9,6 @@ export default {
 		return {}
 	},
 	created(){
-		// this.$store.dispatch("GetCarList")
 	}
 }
 </script>
